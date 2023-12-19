@@ -3,6 +3,20 @@
 const romanToInt = function (s) {
   //Start coding here
   let result = s.toUpperCase().split("");
+  let checkStr = result.map((str, i, arr) => {
+    if (
+      arr[i] === arr[i + 1] &&
+      arr[i] === arr[i + 2] &&
+      arr[i] === arr[i + 3]
+    ) {
+      return "invalid";
+    } else {
+      return str;
+    }
+  });
+  if (checkStr.includes("invalid")) {
+    return "Wrong Format";
+  }
   let intValue = result.map((curr) => {
     if (curr === "I") {
       curr = 1;
@@ -18,6 +32,8 @@ const romanToInt = function (s) {
       curr = 500;
     } else if (curr === "M") {
       curr = 1000;
+    } else {
+      return "invalid";
     }
     return curr;
   });
@@ -55,5 +71,5 @@ const romanToInt = function (s) {
 const result1 = romanToInt("III"); // 3
 const result2 = romanToInt("LVIII"); // 58
 const result3 = romanToInt("MCMXCIV"); //1994
-const result4 = romanToInt("iMCMX");
+const result4 = romanToInt("");
 console.log(result4);
